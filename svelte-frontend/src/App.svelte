@@ -13,7 +13,7 @@
             const formData = new FormData();
             formData.append('file', file);
             formData.append('days', days);
-            const response = await fetch('http://fastapi.ridhachowdhury.com/upload-file/', {
+            const response = await fetch('https://fastapi.ridhachowdhury.com/upload-file/', {
                 method: 'POST',
                 body: formData
             });
@@ -27,7 +27,7 @@
         const formData = new FormData();
         formData.append('text', text);
         formData.append('days', days);
-        const response = await fetch('http://fastapi.ridhachowdhury.com/upload-text/', {
+        const response = await fetch('https://fastapi.ridhachowdhury.com/upload-text/', {
             method: 'POST',
             body: formData
         });
@@ -37,7 +37,7 @@
     }
 
     async function fetchItems() {
-        const response = await fetch('http://fastapi.ridhachowdhury.com/items/');
+        const response = await fetch('https://fastapi.ridhachowdhury.com/items/');
         const data = await response.json();
 
         // Convert expiry_time to "Expires in X hrs" format
@@ -59,7 +59,7 @@
     }
 
     async function copyToClipboard(uuid) {
-        const response = await fetch(`http://fastapi.ridhachowdhury.com/fetch_text/${uuid}`);
+        const response = await fetch(`https://fastapi.ridhachowdhury.com/fetch_text/${uuid}`);
         const data = await response.json();
         navigator.clipboard.writeText(data.content).then(() => {
             alert("Text copied to clipboard");
@@ -69,7 +69,7 @@
     }
 
     async function downloadFile(uuid) {
-        const response = await fetch(`http://fastapi.ridhachowdhury.com/fetch_file/${uuid}`);
+        const response = await fetch(`https://fastapi.ridhachowdhury.com/fetch_file/${uuid}`);
         const data = await response.json();
 
         const fileResponse = await fetch(data.file_url);
