@@ -73,7 +73,7 @@ async def fetch_file(uuid: str):
     if not item or item.expiry < datetime.utcnow() or item.file_type != "file":
         raise HTTPException(status_code=404, detail="File not found or expired")
     
-    file_url = f"http://localhost:8000/{item.file_path}"
+    file_url = f"https://fastapi.ridhachowdhury.com/{item.file_path}"
     return {"file_url": file_url, "original_name": item.original_name}
 
 @app.get("/items/")
