@@ -13,7 +13,7 @@
             const formData = new FormData();
             formData.append('file', file);
             formData.append('days', days);
-            const response = await fetch('http://localhost:8000/upload-file/', {
+            const response = await fetch('http://fastapi.ridhachowdhury.com:8000/upload-file/', {
                 method: 'POST',
                 body: formData
             });
@@ -27,7 +27,7 @@
         const formData = new FormData();
         formData.append('text', text);
         formData.append('days', days);
-        const response = await fetch('http://localhost:8000/upload-text/', {
+        const response = await fetch('http://sendstuff-api.ridhachowdhury.com:8000/upload-text/', {
             method: 'POST',
             body: formData
         });
@@ -37,7 +37,7 @@
     }
 
     async function fetchItems() {
-        const response = await fetch('http://localhost:8000/items/');
+        const response = await fetch('http://sendstuff-api.ridhachowdhury.com:8000/items/');
         const data = await response.json();
 
         // Convert expiry_time to "Expires in X hrs" format
@@ -59,7 +59,7 @@
     }
 
     async function copyToClipboard(uuid) {
-        const response = await fetch(`http://localhost:8000/fetch_text/${uuid}`);
+        const response = await fetch(`http://sendstuff-api.ridhachowdhury.com:8000/fetch_text/${uuid}`);
         const data = await response.json();
         navigator.clipboard.writeText(data.content).then(() => {
             alert("Text copied to clipboard");
@@ -69,7 +69,7 @@
     }
 
     async function downloadFile(uuid) {
-        const response = await fetch(`http://localhost:8000/fetch_file/${uuid}`);
+        const response = await fetch(`http://sendstuff-api.ridhachowdhury.com:8000/fetch_file/${uuid}`);
         const data = await response.json();
 
         const fileResponse = await fetch(data.file_url);
@@ -211,7 +211,7 @@
 
 <div id="app">
 	<h2>Send Stuff</h2>
-    <div class="upload-container">
+    <div class="upload-container"> 
         <input id="file-upload" type="file" on:change={uploadFile}>
         <button type="button" on:click={() => document.getElementById('file-upload').click()}><Paperclip/></button>
         
